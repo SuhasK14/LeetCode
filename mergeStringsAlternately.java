@@ -1,5 +1,7 @@
-class Solution {
-    public String mergeAlternately(String word1, String word2) {
+class Solution
+{
+    public String mergeAlternately(String word1, String word2)
+    {
         int length = Math.max(word1.length(), word2.length());
         String merge = "";
         for (int i = 0; i < length; i++)
