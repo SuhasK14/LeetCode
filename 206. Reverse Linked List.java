@@ -8,29 +8,22 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution
-{
-    public ListNode reverseList(ListNode head)
-    {
-        if (head == null || head.next == null)
-        {
-            return head;
-        }
-
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        // prev is null as list points right --->
         ListNode prev = null;
         ListNode current = head;
-
+        // goes until current is null, current is updated every iteration with next node
         while (current != null)
         {
             // store next variable
             ListNode next = current.next;
-            // reverse direction of arrow of current.next to point to previous
+            // reverse direction of arrow of current.next to point to previous <---
             current.next = prev;
             // Move forward
             prev = current;
             current = next;
         }
-
         // return prev, as it starts at the end and goes backwards since all the arrows have been reversed
         return prev;
     }
