@@ -13,21 +13,16 @@
  *     }
  * }
  */
-class Solution
-{
-    public int maxDepth(TreeNode root)
-    {
-        // base case
-        if (root == null)
-        {
+class Solution {
+    public int maxDepth(TreeNode root) {
+        // no node so max depth is 0
+        if (root == null) {
             return 0;
         }
-
-        // recursively call right and left roots
-        int rightDepth = maxDepth(root.right);
-        int leftDepth = maxDepth(root.left);
-
-        // get maximum depth, add 1 for current root
-        return Math.max(rightDepth, leftDepth) + 1;
+        // recursively get max depth of left and right 
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.right);
+        // compare the greater of left and right and add 1 for current node
+        return Math.max(left, right) + 1;
     }
 }
