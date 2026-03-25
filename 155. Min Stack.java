@@ -1,45 +1,39 @@
-// Assume pop, top, and getMin are always called when the stack is not empty
-// If not, you would have to check if stack is empty or not using if statement
-
-class MinStack
-{
-    Stack<Integer> stack;
+class MinStack {
     // Need to use second stack to track minimum element, as lowest element could be popped off
-    // minStack will then go to the previous lowest element if popped
+    // minStack will then go to the previous lowest element if popped, and so on ....
     Stack<Integer> minStack;
+    Stack<Integer> stack;
 
-    public MinStack()
-    {
+    public MinStack() {
         stack = new Stack<>();
         minStack = new Stack<>();
     }
     
-    public void push(int val)
-    {
+    public void push(int val) {
         stack.push(val);
-        // val <= peek is correct. val < peek is NOT correct **IMPORTANT**
-        if (minStack.empty() || val <= minStack.peek())
-        {
+        // if min stack is empty or current value being pushed is less than current lowest value, then push to stack
+        if (minStack.empty() || val <= minStack.peek()) {
             minStack.push(val);
         }
     }
-    
-    public void pop()
-    {
+    /*
+        Any subsequent greater values getting pushed will have to be popped for it to come back to the smallest element.
+        The current smallest element can never be reached until the values above are popped, so can't be affected.
+    */
+    public void pop() {
         int popped = stack.pop();
-        if (popped == minStack.peek())
-        {
+        // if current value = min stack value, then the lowest value is being popped
+        if (popped == minStack.peek()) {
+            // remove value from both stacks then
             minStack.pop();
         }
     }
-    
-    public int top()
-    {
+    // Methods pop, top and getMin operations will always be called on non-empty stacks.
+    // both methods return peek value on corresponding stack
+    public int top() {
         return stack.peek();
     }
-    
-    public int getMin()
-    {
+    public int getMin() {
         return minStack.peek();
     }
 }
