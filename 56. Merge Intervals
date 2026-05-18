@@ -1,10 +1,5 @@
 class Solution {
     public int[][] merge(int[][] intervals) {
-        // default case, as 2 is min length needed for loop
-        // prevent array index out of bounds exception
-        if (intervals.length == 1) {
-            return intervals;
-        }
         // sort array by starting index, using lambda expression
         Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
         // use cur as current value of merged intervals
