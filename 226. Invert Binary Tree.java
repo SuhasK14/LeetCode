@@ -15,18 +15,18 @@
  */
 class Solution {
     public TreeNode invertTree(TreeNode root) {
-        // null check before calling .right and .left
+        // null check on root
         if (root == null) {
             return null;
         }
-        // if either has value, then switch right and left
-        if (root.right != null || root.left != null) {
-            // recursively call on right and left and set equal to opposite (invert)
-            TreeNode temp = invertTree(root.right);
-            root.right = invertTree(root.left);
-            root.left = temp;
-        }
-        // return final inverted root
+        // swap left and right nodes of root
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+        // call left and right subtrees of root
+        invertTree(root.left);
+        invertTree(root.right);
+        // return root
         return root;
     }
 }
