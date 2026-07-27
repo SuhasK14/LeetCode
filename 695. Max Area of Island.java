@@ -6,8 +6,11 @@ class Solution {
         int cols = grid[0].length;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                // call dfs and check count against current max
-                max = Math.max(max, dfs(grid, i, j));
+                // check if island present
+                if (grid[i][j] == 1) {
+                    // call dfs and check count against current max
+                    max = Math.max(max, dfs(grid, i, j));
+                }
             }
         }
         return max;
@@ -18,11 +21,11 @@ class Solution {
         if (row < 0 || row >= grid.length || col < 0 || col >= grid[0].length) {
             return 0;
         }
-        // check if island present 
+        // check if water
         if (grid[row][col] == 0) {
             return 0;
         }
-        // delete island by setting to 0
+        // set to 0 to mark as visited 
         grid[row][col] = 0;
         // increment the deleted island +1 and call dfs on surrounding islands...
         return 1 + dfs(grid, row + 1, col) + dfs(grid, row - 1, col) + dfs(grid, row, col + 1) + dfs(grid, row, col - 1);
