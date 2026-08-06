@@ -3,8 +3,6 @@ class Solution {
         // check base cases
         if (nums.length == 1) {
             return nums[0];
-        } else if (nums.length == 2) {
-            return Math.max(nums[0], nums[1]);
         }
         // do array that contains max value up to that index (no looking ahead)
         int[] dp = new int[nums.length];
